@@ -1,5 +1,3 @@
 .env
 __pycache__/
-floodeye.db
-uploads/
-check_keys.py
+
