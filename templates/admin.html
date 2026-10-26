@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FloodEye - Admin Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; vertical-align: top; }
+        th { background-color: #f2f2f2; }
+        .ai-box {
+            font-size: 0.85em;
+            background: #f8f9fa;
+            border-left: 3px solid #007bff;
+            padding: 8px;
+            margin-top: 6px;
+            border-radius: 4px;
+            white-space: pre-line;
+        }
+        a { color: #007bff; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <h2>Admin Dashboard - NGO Proof Verification</h2>
+    <p><a href="/">← Back to Submission Page</a></p>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Zone</th>
+                <th>NGO Name</th>
+                <th>Amount</th>
+                <th>Note</th>
+                <th>Proof & Claude AI Audit</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for proof in proofs %}
+            <tr>
+                <td>{{ proof.id }}</td>
+                <td>{{ proof.zone_id }}</td>
+                <td>{{ proof.ngo_name }}</td>
+                <td>${{ proof.amount }}</td>
+                <td>{{ proof.note }}</td>
+                <td>
+                    <a href="/{{ proof.image_path }}" target="_blank">View Uploaded Image</a>
+                    <div class="ai-box">
+                        <strong>Claude AI Assessment:</strong><br>
+                        {{ proof.ai_verdict }}
+                    </div>
+                </td>
+                <td>{{ proof.status }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
